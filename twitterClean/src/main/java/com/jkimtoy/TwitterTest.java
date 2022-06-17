@@ -20,7 +20,10 @@ public class TwitterTest {
 	//twitter 객체 초기화 + consumer 인증 set
 	twitter = TwitterFactory.getSingleton();
 	
-	//getInstance해도 되지만, 기존에 얻어놓은 토큰을 사용하여 넣어도 됨. getInstance할거면 메소드를 생성해야한다.
+	//getInstance해도 되지만, 기존에 얻어놓은 토큰을 사용하여 넣어도 됨. getInstance할거면 메소드를 생성해야한다. 
+	/*
+	 * 깃 리베이스를 위한 테스트 용
+	 * */
 	twitter.setOAuthConsumer(TwitterInfo.getInstance().getAPIKey(), TwitterInfo.getInstance().getAPISecretKey());
 	
 	try {
