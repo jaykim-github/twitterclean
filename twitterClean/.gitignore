@@ -10,6 +10,7 @@ tmp/
 *.swp
 *~.nib
 local.properties
+twitter.properties
 .settings/
 .loadpath
 .recommenders
