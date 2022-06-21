@@ -1,10 +1,10 @@
 package com.jkimtoy;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Controller;
 
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -14,7 +14,7 @@ import twitter4j.User;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
-@Service
+@Controller
 @PropertySource("src/main/resources/twitter.properties")
 public class TwitterTest {
 	//전역변수 선언
@@ -25,19 +25,24 @@ public class TwitterTest {
 	static RequestToken requestToken=null;
 	static AccessToken finalAccessToken=null;
 	
-	@Value("${oauth.apiKey}")
-	static String apiKey;
-	@Value("${oauth.apiKeySecret}")
-	static String apiKeySecret;
+	@Autowired
+	TwitterProperties prop;
 	
+	private static String apiKey;
+	
+	@Value("${apiKey}")
+	private void setApiKey(String key) {
+		apiKey = key;
+	}
 
 	 public static void main(String[] args){
+		 
 	//twitter 객체 초기화 + consumer 인증 set
 	twitter = TwitterFactory.getSingleton();
 	
 	//getInstance해도 되지만, 기존에 얻어놓은 토큰을 사용하여 넣어도 됨. getInstance할거면 메소드를 생성해야한다. 
 	//twitter.setOAuthConsumer(TwitterInfo.getInstance().getAPIKey(), TwitterInfo.getInstance().getAPISecretKey());
-	twitter.setOAuthConsumer(apiKey, apiKeySecret);
+	twitter.setOAuthConsumer("", "");
 	
 	try {
 		requestToken = twitter.getOAuthRequestToken();
@@ -46,7 +51,7 @@ public class TwitterTest {
 	}
 	System. out.println(requestToken.getAuthorizationURL());
 	
-	finalAccessToken=new AccessToken("1407688173241569283-QZDLSIknGiGQEogLR1O5x6SXfNBFkl", "w5gW4F0QDAXlAwnUVJRCilmk89N4NOn33yO0ge8UFHv3O");
+	finalAccessToken=new AccessToken("1407688173241569283-QZDLSI knGiGQEogLR1O5x6SXfNBFkl", "w5gW4F0QDAXlAwnUVJRCilmk89N4NOn33yO0ge8UFHv3O");
 	
 	twitter.setOAuthAccessToken(finalAccessToken);
 	try {
@@ -59,7 +64,8 @@ public class TwitterTest {
 		Status status = twitter.updateStatus(msg);		
 	}catch(Exception e) {
 		e.printStackTrace();
-}
+	}
+	
 
 	 }
 }
