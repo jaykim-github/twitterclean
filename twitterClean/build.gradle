@@ -21,3 +21,14 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+processResources {
+	filesMatching('**/twitter.properties') {
+		expand(project.properties)
+	}
+}
+
+ext{
+ 	apiKey = "UkSvspAWX5KgF2EYpEIIyPMKp"
+	apiKeySecret = "qEfbLqAdoMpXvQ7z0g8DdamMe36JPtGlaMIb34wsyuyM1hmvcc"
+}
