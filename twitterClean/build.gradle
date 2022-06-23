@@ -16,6 +16,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation files('libs/twitter4j-core-4.0.7.jar')
+	implementation 'javax.servlet:jstl'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 }
 
 tasks.named('test') {
@@ -23,12 +25,6 @@ tasks.named('test') {
 }
 
 processResources {
-	filesMatching('**/twitter.properties') {
-		expand(project.properties)
-	}
+
 }
 
-ext{
- 	apiKey = "UkSvspAWX5KgF2EYpEIIyPMKp"
-	apiKeySecret = "qEfbLqAdoMpXvQ7z0g8DdamMe36JPtGlaMIb34wsyuyM1hmvcc"
-}
