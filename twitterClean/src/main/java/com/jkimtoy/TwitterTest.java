@@ -52,7 +52,7 @@ public class TwitterTest {
 		return this.secrettoken;
 	}
 
-	public static void main(String[] args) {
+	public static void twit(String[] args) {
 
 		try (ConfigurableApplicationContext ctx = SpringApplication.run(TwitterTest.class, args)) {
 			TwitterTest m = ctx.getBean(TwitterTest.class);		
