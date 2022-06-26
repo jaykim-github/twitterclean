@@ -28,7 +28,7 @@ $(document).ready(function(){
 	
 });
  */
-function login(){
+function twit(){
 	$.ajax({
 	    url: "/twit",
 	    type: "POST",
@@ -47,15 +47,14 @@ function login(){
 				return false;
 			} 
 		},
-		beforeSend:function(){
-			//아이디 혹은 비밀번호 기입 되어있는지 확인
-			if(document.writefrm.person.value == ""){
-				alert("대상을 입력해 주세요.");
-				$('#person').focus();
-				return false;
+	//	beforeSend:function(){
+		//	if(document.writefrm.person.value == ""){
+			//	alert("대상을 입력해 주세요.");
+				//$('#person').focus();
+				//return false;
 				
-			}
-		},
+			//}
+		//},
 	    
  	});
 }
@@ -68,7 +67,7 @@ function login(){
 	<br>
 	<h3>키워드 입력</h3>
 	<br>
-	<form id ="writefrm" name = "logfrm" style="border:10px">
+	<form id ="writefrm" style="border:10px">
 	 	키워드1 : <input type="text" name="keyword1" id ="keyword1" autofocus/>
 		<br>
 		<br>
@@ -101,11 +100,10 @@ function login(){
 	<br>
 		대상  : <input type="text" name="person" id ="person"/>
 	<br>
-	<div style="float:right">
-   <button type="button" value="write" id="write">트윗하기</button> 
-	</div>
    </form>
-
+	<div style="float:right">
+   <button type="button" value="write" id="write"  onclick="twit()">트윗하기</button> 
+	</div>
    </div>
 </body>
 </html>
