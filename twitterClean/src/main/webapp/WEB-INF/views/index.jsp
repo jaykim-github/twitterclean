@@ -6,34 +6,48 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <script type="text/javascript">
 
-/**
- * 
-
 $(document).ready(function(){
-	$("#login").click(function(){
-		login();
+	$("#write").click(function(){
+		$.ajax({
+		    url: "/twit",
+		    type: "POST",
+		   // cache:false,
+		  //  async:true, 
+		    data:$("#writefrm").serialize(),
+		    dataType:"json",
+		    success: function(result) {
+		    	console.log(result);
+		    	console.log(result.value);
+				if(result.value == 1){
+					console.log("twit success");
+					//alert("로그인 되었습니다.")
+				}else {
+					alert("서버를 확인해주세요.");
+					return false;
+				} 
+			},error:function(request,status,error){             
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+
+	 	});
 	});
-	$("#id, #password").keypress(function(e){
-		if(e.keyCode == 13){
-			login();
-			return false;
-		}
-	})
 	
 });
- */
+/*
 function twit(){
 	$.ajax({
 	    url: "/twit",
 	    type: "POST",
-	    cache:false,
-	    async:true, 
+	   // cache:false,
+	  //  async:true, 
 	    data:$("#writefrm").serialize(),
 	    dataType:"json",
 	    success: function(result) {
@@ -46,18 +60,13 @@ function twit(){
 				alert("서버를 확인해주세요.");
 				return false;
 			} 
-		},
-	//	beforeSend:function(){
-		//	if(document.writefrm.person.value == ""){
-			//	alert("대상을 입력해 주세요.");
-				//$('#person').focus();
-				//return false;
-				
-			//}
-		//},
-	    
+		},error:function(request,status,error){             
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+
  	});
 }
+*/
 </script>
 <title>입력페이지</title>
 </head>
@@ -68,7 +77,7 @@ function twit(){
 	<h3>키워드 입력</h3>
 	<br>
 	<form id ="writefrm" style="border:10px">
-	 	키워드1 : <input type="text" name="keyword1" id ="keyword1" autofocus/>
+	 	키워드1 : <input type="text" name="keyword1" id ="keyword1"/>
 		<br>
 		<br>
 		키워드2  : <input type="text" name="keyword2" id ="keyword2"/>
@@ -102,7 +111,7 @@ function twit(){
 	<br>
    </form>
 	<div style="float:right">
-   <button type="button" value="write" id="write"  onclick="twit()">트윗하기</button> 
+   <button type="button" value="write" id="write">트윗하기</button> 
 	</div>
    </div>
 </body>
