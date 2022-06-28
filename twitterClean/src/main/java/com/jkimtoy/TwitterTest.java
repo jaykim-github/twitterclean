@@ -1,13 +1,13 @@
 package com.jkimtoy;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.HashMap;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Controller;
+
 
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -52,7 +52,7 @@ public class TwitterTest {
 		return this.secrettoken;
 	}
 
-	public static void twit(String[] args) {
+	public static void main(String[] args) {
 
 		try (ConfigurableApplicationContext ctx = SpringApplication.run(TwitterTest.class, args)) {
 			TwitterTest m = ctx.getBean(TwitterTest.class);		
@@ -76,10 +76,35 @@ public class TwitterTest {
 				// 계정명 획득
 				User user = twitter.verifyCredentials();
 				System.out.println(user.getScreenName());
+				
+				//폼에서 데이터 받음
+				HashMap<String, String> map = new HashMap<String, String>();
+				
 
-				// 계정에 트윗 등록
-				String msg = "properties 파일 테스트";
-				Status status = twitter.updateStatus(msg);
+				
+				String arr[] = new String[100];
+				Set<String> keySet = map.keySet();
+				
+				for(int i=0; i<arr.length; i++) {
+					String str = "";
+					
+					for (String key : keySet) {	
+						str += map.get("person") + " ";
+						if(!key.equals("person")) {
+							str += map.get(key) + "\n";
+						}
+					}
+					
+					str += i+1;
+					arr[i] = str;
+					str = "";
+
+				}
+				
+				for(int i = 0; i<arr.length; i++) {
+					Status status = twitter.updateStatus(arr[i]);
+				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
