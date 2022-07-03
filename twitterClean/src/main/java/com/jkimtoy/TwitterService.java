@@ -5,7 +5,10 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -15,6 +18,8 @@ import twitter4j.User;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
+@Service
+@Component
 public class TwitterService {
 	// 전역변수 선언
 		static String accessToken = "";
@@ -62,16 +67,15 @@ public class TwitterService {
 			for (String key : keySet) {	
 				str += req_data.get("person") + " ";
 				if(!key.equals("person")) {
-					//System.out.println(key + " : " + req_data.get(key));
-					str += req_data.get(key) + "\\r\\n";
+					str += req_data.get(key) + "\n";
 				}
 			}
 			
+			str += i+1;
 			arr[i] = str;
 			str = "";
 
 		}
-		
 		return arr;
 	}
 	
@@ -81,8 +85,9 @@ public class TwitterService {
 		
 		String arr[] = service.twitting(req_data);
 
-		try (ConfigurableApplicationContext ctx = SpringApplication.run(TwitterService.class, arr)) {
-			TwitterService m = ctx.getBean(TwitterService.class);		
+		//try (ConfigurableApplicationContext ctx = SpringApplication.run(TwitterService.class, arr)) {
+		//	TwitterService m = ctx.getBean(TwitterService.class);
+		TwitterService m = new TwitterService();
 
 			// twitter 객체 초기화 + consumer 인증 set
 			twitter = TwitterFactory.getSingleton();
@@ -116,7 +121,7 @@ public class TwitterService {
 				e.printStackTrace();
 			}
 
-		}
+		//}
 		
 	}
 }

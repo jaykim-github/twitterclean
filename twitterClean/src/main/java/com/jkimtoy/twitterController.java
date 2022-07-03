@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class twitterController {
 	
-//	@Autowired
+	@Autowired
 	TwitterService service;
 	
 	@RequestMapping("/index")
