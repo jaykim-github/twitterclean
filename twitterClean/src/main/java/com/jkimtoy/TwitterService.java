@@ -21,7 +21,7 @@ import twitter4j.auth.RequestToken;
 @Service
 @Component
 public class TwitterService {
-	// 전역변수 선언
+
 		static String accessToken = "";
 		static String accessSecret = "";
 
@@ -56,8 +56,6 @@ public class TwitterService {
 
 	
 	public String[] twitting(HashMap<String,Object> req_data) {
-		//폼에서 받은 데이터들을 가지고 String을 만들어야하는데...
-		
 		String arr[] = new String[100];
 		Set<String> keySet = req_data.keySet();
 		
@@ -105,12 +103,8 @@ public class TwitterService {
 
 			twitter.setOAuthAccessToken(finalAccessToken);
 			try {
-				// 계정명 획득
-				User user = twitter.verifyCredentials();
-				System.out.println(user.getScreenName());
-
-				// 계정에 트윗 등록
-				//String msg = "properties 파일 테스트";
+			//	User user = twitter.verifyCredentials();
+			//	System.out.println(user.getScreenName());
 				
 				for(int i = 0; i<arr.length; i++) {
 					Status status = twitter.updateStatus(arr[i]);
