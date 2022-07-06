@@ -103,8 +103,6 @@ public class TwitterService {
 
 			twitter.setOAuthAccessToken(finalAccessToken);
 			try {
-			//	User user = twitter.verifyCredentials();
-			//	System.out.println(user.getScreenName());
 				
 				for(int i = 0; i<arr.length; i++) {
 					Status status = twitter.updateStatus(arr[i]);
