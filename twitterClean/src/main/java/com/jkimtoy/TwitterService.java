@@ -87,9 +87,7 @@ public class TwitterService {
 		//	TwitterService m = ctx.getBean(TwitterService.class);
 		TwitterService m = new TwitterService();
 
-			// twitter 객체 초기화 + consumer 인증 set
 			twitter = TwitterFactory.getSingleton();
-
 			twitter.setOAuthConsumer(m.apikey(),m.apisecretKey());
 
 			try {
@@ -103,11 +101,9 @@ public class TwitterService {
 
 			twitter.setOAuthAccessToken(finalAccessToken);
 			try {
-				
 				for(int i = 0; i<arr.length; i++) {
 					Status status = twitter.updateStatus(arr[i]);
 				}
-		
 				
 			} catch (Exception e) {
 				e.printStackTrace();
