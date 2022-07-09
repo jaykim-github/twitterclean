@@ -21,7 +21,17 @@ import twitter4j.auth.RequestToken;
 @Service
 @Component
 public class TwitterService {
+	/* properties 값 가져오는 코드 테스트...해보기
+	   // config.properties 에서 설정 정보 가져오기 시작
+	   private static String NAMESPACE;
 
+	   @SuppressWarnings("static-access")
+	   @Value("#{config['apiKey']}")
+	   public void setNAMESPACE(String value) {
+	      this.NAMESPACE = value + ".";
+	   }
+	   // config.properties 에서 설정 정보 가져오기 끝
+*/
 		static String accessToken = "";
 		static String accessSecret = "";
 
