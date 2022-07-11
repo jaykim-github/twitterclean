@@ -55,8 +55,8 @@ public class TwitterService {
 		}
 
 	
-	public String[] twitting(HashMap<String,Object> req_data) {
-		String arr[] = new String[100];
+	public String[] twitting(HashMap<String,Object> req_data, int seq) {
+		String arr[] = new String[seq];
 		Set<String> keySet = req_data.keySet();
 		
 		for(int i=0; i<arr.length; i++) {
@@ -78,10 +78,10 @@ public class TwitterService {
 	}
 	
 	
-	public void twit(HashMap<String,Object> req_data) {
+	public void twit(HashMap<String,Object> req_data, int seq) {
 		TwitterService service = new TwitterService();
 		
-		String arr[] = service.twitting(req_data);
+		String arr[] = service.twitting(req_data, seq);
 
 		//try (ConfigurableApplicationContext ctx = SpringApplication.run(TwitterService.class, arr)) {
 		//	TwitterService m = ctx.getBean(TwitterService.class);

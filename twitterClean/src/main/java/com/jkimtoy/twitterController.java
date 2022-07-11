@@ -24,9 +24,8 @@ public class twitterController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/twit", method = {RequestMethod.POST})
-	public int twit(@RequestParam HashMap<String,Object> allParameters){
-		//폼 데이터들을 담아 서비스로 넘기기, 서비스는 데이터들을 100번 트윗할 수 있도록  for문 생성
-		service.twit(allParameters);
+	public int twit(@RequestParam HashMap<String,Object> allParameters, int seq){
+		service.twit(allParameters, seq);
 		
 		return 1;
 	
