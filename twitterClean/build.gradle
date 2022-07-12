@@ -28,3 +28,15 @@ processResources {
 
 }
 
+apply plugin: 'maven'
+
+
+task writeNewPom {
+    pom {
+        project {
+            groupId 'com.jkimtoy'
+            artifactId 'jkimtoy'
+            version '1.0.0'
+        }
+    }.writeTo("$buildDir/newpom.xml")
+}
