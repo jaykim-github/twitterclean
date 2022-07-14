@@ -56,6 +56,7 @@ public class TwitterService {
 
 	
 	public String[] twitting(HashMap<String,Object> req_data, int seq) {
+		//백엔드 로직을 뭘 더 추가해야할까? 보안??? 스프링 공부가 필요...
 		String arr[] = new String[seq];
 		Set<String> keySet = req_data.keySet();
 		
